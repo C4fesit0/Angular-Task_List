@@ -20,7 +20,8 @@ import { TaskItemComponent } from './components/task-item/task-item.component';
   ],
   imports: [
     BrowserModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

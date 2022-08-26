@@ -4,10 +4,20 @@ import {Task} from '../Task';
 import {TASKS} from '../mosk-task';
 import { Observable, of } from 'rxjs';
 
+const htttpOptions= {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class TaskService {
+  
   private apiUrl = 'http://localhost:5000/tasks';
   constructor(private http: HttpClient) {
     
@@ -17,8 +27,11 @@ export class TaskService {
     return this.http.get<Task[]>(this.apiUrl)
   }
   deleteTask(task:Task): Observable<Task>{
-    console.log("Entro")
     const url = `${this.apiUrl}/${task.id}`;
     return this.http.delete<Task>(url);
+  }
+  updateTaskReminder(task:Task): Observable<Task>{
+    const url = `${this.apiUrl}/${task.id}`;
+    return this.http.put<Task>(url,task,htttpOptions);
   }
 }
